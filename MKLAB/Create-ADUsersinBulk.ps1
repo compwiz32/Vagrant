@@ -17,14 +17,14 @@ $i = 1
     }
 
     $NewUserParams = @{
-    Name = $nameinfo.SamAcct
-    DisplayName = $nameinfo.DisplayName
-    GivenName = $nameinfo.First
-    Surname = $nameinfo.Last
-    Path = $OU
-    AccountPassword = $password
-    Enabled = $true
-    Server = "DC01"
+        Name            = $nameinfo.SamAcct
+        DisplayName     = $nameinfo.DisplayName
+        GivenName       = $nameinfo.First
+        Surname         = $nameinfo.Last
+        Path            = $OU
+        AccountPassword = $password
+        Enabled         = $true
+        Server          = "DC01"
     }
     
     $i
