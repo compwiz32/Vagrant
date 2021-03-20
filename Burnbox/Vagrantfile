@@ -1,34 +1,11 @@
-
 Vagrant.configure("2") do |config|
   config.vm.synced_folder '.', '/vagrant', disabled: true
   config.vm.network "public_network", bridge: "LabVSwitch"
-
-  config.vm.define "RTP-DC01" do |subconfig|
-    subconfig.vm.box = "jborean93/WindowsServer2019"
-    subconfig.vm.provider :hyperv do |hyperv|
-      hyperv.vmname = "RTP-DC01_Svr2019_GUI"
-    end
-  end
-
-  config.vm.define "RTP-DC02" do |subconfig|
-    subconfig.vm.box = "gusztavvargadr/windows-server"
-    subconfig.vm.box_version = "1809.0.1912-standard-core"
-    subconfig.vm.provider :hyperv do |hyperv|
-        hyperv.vmname = "RTP-DC02_Svr2019_Core"
-    end
-  end
-
-  config.vm.define "CLIENT01" do |subconfig|
+  config.vm.box = "StefanScherer/windows_10"
+  config.vm.define "BURN_BOX" do |subconfig|
     subconfig.vm.box = "StefanScherer/windows_10"
     subconfig.vm.provider :hyperv do |hyperv|
-      hyperv.vmname = "CLIENT01_Win10"
-    end
-  end
-
-  config.vm.define "CLIENT02" do |subconfig|
-    subconfig.vm.box = "StefanScherer/windows_10"
-    subconfig.vm.provider :hyperv do |hyperv|
-      hyperv.vmname = "CLIENT02_Win10"
+      hyperv.vmname = "zMisc_BurnBox"
     end
   end
 
