@@ -1,19 +1,23 @@
-$OU = "OU=TestUserAccounts,DC=MKLAB,DC=INT"
+#requires -module NameIt
+
+$OU = "OU=TestUserAccounts,DC=mk,DC=lab"
 $password = ConvertTo-SecureString "Passw0rd123#" -AsPlainText -Force
 
 $i = 1
 
-1..1000 | Foreach-object {
+1..100 | Foreach-object {
     $First = invoke-generate "[person both first]"
-    $Middle = invoke-generate "[person both first]"
+    # $Middle = invoke-generate "[person both first]"
     $Last = invoke-generate "[person both last]"
-    $SAM = -join (($First.Substring(0,1)),($Middle.Substring(0,1)),($Last))
+    #$SAM = -join (($First.Substring(0,1)),($Middle.Substring(0,1)),($Last))
+    $SAM = -join (($First.Substring(0,1)),($Last))
 
     $nameinfo = [PSCustomObject]@{
         First = $First
         Last = $Last
         SAMAcct = $SAM
-        DisplayName = $First, $Middle, $Last -join " "
+        # DisplayName = $First, $Middle, $Last -join " "
+        DisplayName = $First, $Last -join " "
     }
 
     $NewUserParams = @{
@@ -26,9 +30,11 @@ $i = 1
         Enabled         = $true
         Server          = "DC01"
     }
-    
+
     $i
     $i++
-    New-ADUser @NewUserParams 
-    
+
+    $NewUserParams
+    # New-ADUser @NewUserParams
+
 }
